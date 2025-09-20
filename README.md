@@ -231,7 +231,7 @@ It allows developers and testers to **send HTTP requests**, **inspect responses*
 
 ## 🧪 Writing Tests in Postman
 - Inside the Tests tab, add JS code like:
-```
+```bash
 // Check status code
 pm.test("Status code is 200", function () {
     pm.response.to.have.status(200);
