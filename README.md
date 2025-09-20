@@ -1,5 +1,5 @@
 # Software-Testing
-# 🧪 Software Testing
+#  1. 🧪 Software Testing ( API )
 
 ## 📌 What is Software Testing?
 Software testing is the process of **evaluating and verifying** that a software application or system works as expected.  
@@ -71,7 +71,7 @@ For an **E-commerce app**, testing includes:
 
 ---
 ---
-# 🌐 API Testing
+# 2. 🌐 API Testing
 
 ## 📌 What is API Testing?
 API Testing is a type of software testing that focuses on verifying **Application Programming Interfaces (APIs)** directly.  
@@ -163,3 +163,96 @@ curl -X POST https://api.example.com/users \
 - Detects issues early at the integration layer
 - Ensures data security and performance
 - Reduces overall testing cost
+
+---
+--- 
+
+# 📬 Postman – API Testing Tool
+### 📌 What is Postman?
+Postman is a **collaboration platform** for API development and testing.  
+It allows developers and testers to **send HTTP requests**, **inspect responses**, **create collections**, and **automate testing**.
+
+---
+
+### 🎯 Why Use Postman?
+- Easy to use (GUI-based, no coding required for basic testing)  
+- Supports all HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`  
+- Works with multiple data formats: JSON, XML, form-data, raw text  
+- Enables **environment setup** (e.g., dev, staging, prod)  
+- Provides **automation and CI/CD integration** (via Newman)  
+
+---
+
+### 🔑 Postman Features
+- **Collections** → Save and organize API requests  
+- **Environment Variables** → Store base URLs, tokens, keys  
+- **Pre-request Scripts** → Run JS code before sending a request  
+- **Tests (Assertions)** → Validate responses automatically  
+- **Newman** → Run collections via CLI for automation  
+- **Mock Servers** → Simulate APIs before backend is ready  
+
+---
+
+### 🛠️ Basic Workflow
+1. **Install Postman** → Download from [https://www.postman.com/downloads/](https://www.postman.com/downloads/)  
+2. **Create a Request** → Choose method (`GET`, `POST`, etc.), enter API URL  
+3. **Add Headers/Body** → e.g., `Content-Type: application/json`  
+4. **Send Request** → Click **Send** and check response  
+5. **Save to Collection** → Organize requests for reuse  
+6. **Write Tests** → Add JS snippets to validate responses  
+
+---
+
+## 📂 Example API Test in Postman
+### GET Request
+- URL: `https://reqres.in/api/users/2`  
+- Expected Response:
+```json
+{
+  "data": {
+    "id": 2,
+    "email": "janet.weaver@reqres.in",
+    "first_name": "Janet",
+    "last_name": "Weaver"
+  }
+}
+```
+### POST Request
+- URL: `https://reqres.in/api/users`
+- Body (JSON):
+```json
+{
+  "name": "Anil",
+  "job": "Engineer"
+}
+```
+- Expected Response: 201 Created
+---
+
+## 🧪 Writing Tests in Postman
+- Inside the Tests tab, add JS code like:
+```
+// Check status code
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// Check response body
+pm.test("Response has user ID", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.data.id).to.eql(2);
+});
+```
+
+## 🔄 Running Tests via Newman (CLI)
+```
+npm install -g newman                                     # Install Newman globally
+newman run MyCollection.json                              # Run a Postman collection
+newman run MyCollection.json -e dev_environment.json      # Run with environment file
+```
+---
+## ✅ Benefits of Postman
+- Simple GUI for beginners
+- Powerful automation for advanced testers
+- Great for API exploration, debugging, and documentation
+- Integrates with CI/CD pipelines
