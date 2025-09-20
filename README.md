@@ -167,7 +167,7 @@ curl -X POST https://api.example.com/users \
 ---
 --- 
 
-# 📬 Postman – API Testing Tool
+# 3. 📬 Postman – API Testing Tool
 ### 📌 What is Postman?
 Postman is a **collaboration platform** for API development and testing.  
 It allows developers and testers to **send HTTP requests**, **inspect responses**, **create collections**, and **automate testing**.
